@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+#from item import Item
 
 # Declare all the rooms
 
@@ -39,6 +41,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player("Player1", room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +53,66 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print()
+selection = input("""Welcome to The Game new adventurer. 
+
+What is your name? """)
+player.name = selection
+
+print()
+print('--------------------------------------')
+print()
+print(f"Hello {player.name}! Let's begin...")
+print()
+print(f"You are currently {player.current_room.name}")
+print()
+print(player.current_room.description)
+print()
+print("-------------------------------------")
+print()
+
+while True:
+    
+    selection = input("""Which direction would you like to go? 
+    For North enter n
+    For South enter s
+    For East enter e
+    For West enter w
+    To Quit enter q
+    """ )
+
+    def change_room():
+        print()
+        print("-------------------------------------")
+        print(f"Welcome to the {player.current_room.name}!")
+        print()
+        print(player.current_room.description)
+        print("-------------------------------------")
+        print('\n')
+
+    if selection == 'n' and player.current_room.n_to != 'none':
+        player.current_room = player.current_room.n_to
+        change_room()
+
+    elif selection == 's' and player.current_room.s_to != 'none':
+        player.current_room = player.current_room.s_to
+        change_room()
+
+    elif selection == 'e' and player.current_room.e_to != 'none':
+        player.current_room = player.current_room.e_to
+        change_room()
+
+    elif selection == 'w' and player.current_room.w_to != 'none':
+        player.current_room = player.current_room.w_to
+        change_room()
+
+    elif selection == 'q':
+        print("We're sorry to see you go. visit again soon!")
+        break
+
+    else:
+        print("Sorry, that's not a valid direction. Try again.")
+
+
+ 
+ 
