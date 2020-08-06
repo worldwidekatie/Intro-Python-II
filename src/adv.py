@@ -53,13 +53,14 @@ player = Player("Player1", room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print()
+print('\n')
+print('--------------------------------------')
 selection = input("""Welcome to The Game new adventurer. 
 
 What is your name? """)
 player.name = selection
-
-print()
+print('--------------------------------------')
+print('\n')
 print('--------------------------------------')
 print()
 print(f"Hello {player.name}! Let's begin...")
@@ -68,12 +69,11 @@ print(f"You are currently {player.current_room.name}")
 print()
 print(player.current_room.description)
 print()
-print("-------------------------------------")
-print()
 
 while True:
-    
-    selection = input("""Which direction would you like to go? 
+    print("-------------------------------------")
+    selection = input("""Which direction would you like to go?
+
     For North enter n
     For South enter s
     For East enter e
@@ -109,9 +109,12 @@ while True:
     elif selection == 'q':
         print("We're sorry to see you go. visit again soon!")
         break
+    
+    elif selection not in ['n', 's', 'e', 'w', 'q']:
+        print("Sorry, that's not a valid command. Try using n, s, e, w, or q.")
 
     else:
-        print("Sorry, that's not a valid direction. Try again.")
+        print("Sorry, that's not a valid direction. Try going a different direction.")
 
 
  
